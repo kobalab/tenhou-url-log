@@ -1,0 +1,35 @@
+{
+  "name": "@kobalab/tenhou-url-log",
+  "version": "0.9.0",
+  "description": "電脳麻将の牌譜を天鳳JSON形式に変換",
+  "main": "lib/logconv.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "tenhou-url-log": "./command.js"
+  },
+  "scripts": {
+    "test": "mocha -u tdd -t 0",
+    "test:cover": "nyc -r lcov -r text npm test"
+  },
+  "keywords": [
+    "麻雀",
+    "天鳳",
+    "電脳麻将",
+    "牌譜"
+  ],
+  "author": "Satoshi Kobayashi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kobalab/tenhou-url-log/issues"
+  },
+  "homepage": "https://github.com/kobalab/tenhou-url-log#readme",
+  "devDependencies": {
+    "mocha": "^10.8.2",
+    "nyc": "^17.1.0"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
