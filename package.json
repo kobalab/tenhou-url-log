@@ -1,6 +1,6 @@
 {
   "name": "@kobalab/tenhou-url-log",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "電脳麻将の牌譜を天鳳JSON形式に変換",
   "main": "lib/logconv.js",
   "publishConfig": {
