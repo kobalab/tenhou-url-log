@@ -472,19 +472,59 @@ suite('logconv()', ()=>{
                                 } });
             assert.deepEqual(logconv(paipu).log[0][3], [ 37 ]);
         });
+        test('役満パオ(ロン和了)', ()=>{
+            let paipu = add_log(init_paipu(), 0, { hule: {
+                                    l: 1, shoupai: '', baojia: 3,
+                                    damanguan: 1, defen: 32000,
+                                    hupai: [ { name: '大三元', fanshu: '*',
+                                               baojia: '+' } ],
+                                    fenpei: [ 0, 32000, -16000, -16000 ]
+                                } });
+            assert.deepEqual(logconv(paipu).log[0][16],
+                                    [ '和了', [ 0, 32000, -16000, -16000 ],
+                                      [ 1, 3, 2, '役満32000点',
+                                        '大三元(役満)' ] ]);
+        })
+        test('役満パオ(ツモ和了)', ()=>{
+            let paipu = add_log(init_paipu(), 0, { hule: {
+                                    l: 1, shoupai: '', baojia: null,
+                                    damanguan: 1, defen: 32000,
+                                    hupai: [ { name: '大三元', fanshu: '*',
+                                               baojia: '-' } ],
+                                    fenpei: [ -32000, 32000, 0, 0 ]
+                                } });
+            assert.deepEqual(logconv(paipu).log[0][16],
+                                    [ '和了', [ -32000, 32000, 0, 0 ],
+                                      [ 1, 1, 0, '役満8000-16000点',
+                                        '大三元(役満)' ] ]);
+        })
+        test('役満パオ(パオが放銃)', ()=>{
+            let paipu = add_log(init_paipu(), 0, { hule: {
+                                    l: 1, shoupai: '', baojia: 3,
+                                    damanguan: 1, defen: 32000,
+                                    hupai: [ { name: '大三元', fanshu: '*',
+                                               baojia: '=' } ],
+                                    fenpei: [ 0, 32000, 0, -32000 ]
+                                } });
+            assert.deepEqual(logconv(paipu).log[0][16],
+                                    [ '和了', [ 0, 32000, 0, -32000 ],
+                                      [ 1, 3, 1, '役満32000点',
+                                        '大三元(役満)' ] ]);
+        })
         test('南二局', ()=>{
             let paipu = add_log(init_paipu(), 0,
                                 qipai({zhuangfeng: 1, jushu: 1 }),
                                 { hule: {
-                                    l: 1, shoupai: '', baojia: 2,
-                                    fu: 30, fanshu: 1, defen: 1000,
-                                    hupai: [ { name: '平和', fanshu: 1 } ],
-                                    fenpei: [ 0, 1000, -1000, 0 ]
+                                    l: 1, shoupai: '', baojia: 3,
+                                    damanguan: 1, defen: 32000,
+                                    hupai: [ { name: '大三元', fanshu: '*',
+                                               baojia: '+' } ],
+                                    fenpei: [ 0, 32000, -16000, -16000 ]
                                 } });
             assert.deepEqual(logconv(paipu).log[0][16],
-                                    [ '和了', [ 0, 0, 1000, -1000 ],
-                                      [ 2, 3, 2, '30符1飜1000点',
-                                        '平和(1飜)' ] ]);
+                                    [ '和了', [  -16000, 0, 32000, -16000 ],
+                                      [ 2, 0, 3, '役満32000点',
+                                        '大三元(役満)' ] ]);
         });
     });
     suite('流局', ()=>{
